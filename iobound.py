@@ -3,8 +3,7 @@ import time
 import aiohttp
 
 async def download_site(session, url):
-    async with sessi
-    n.get(url) as response:
+    async with session.get(url) as response:
         print("Read {0} from {1}".format(response.content_length, url))
 
 async def download_all_sites(sites):
