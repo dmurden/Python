@@ -2,12 +2,11 @@ import asyncio
 import time
 import aiohttp
 
-
 async def download_site(session, url):
-    async with session.get(url) as response:
+    async with sessi
+    n.get(url) as response:
         print("Read {0} from {1}".format(response.content_length, url))
 
-# Test
 async def download_all_sites(sites):
     async with aiohttp.ClientSession() as session:
         tasks = []
