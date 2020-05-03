@@ -37,7 +37,7 @@ for x in data:
             cfips = x[0]
         print(x[2], x[3], cfips, x[1])
         sql = "INSERT INTO state_counties (cfips, sfips, county) VALUES (?, ?, ?)"
-        val = (cfips, x[3], x[2])
+        val = (cfips, x[3], x[1])
         mycursor.execute(sql, val)
         conn.commit()
     for y in range(4,len(data[0])):
