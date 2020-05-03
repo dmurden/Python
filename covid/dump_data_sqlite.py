@@ -18,7 +18,7 @@ if int(infips) > 999:
         sdata = mycursor.fetchone()
         with open(sdata[1]+'_'+data[2]+'_covid.csv', 'w', newline='') as csvfile:
             spamwriter = csv.writer(csvfile)
-            spamwriter.writerow([sdata[1],data[2],''])
+            spamwriter.writerow([sdata[1],data[2],infips])
             spamwriter.writerow(['Date', 'Cases', 'Daily'])
             pretotal = 0
             for row in mycursor.execute('SELECT * FROM covid_data WHERE cfips=? ORDER BY casedate', [infips]):
@@ -34,7 +34,7 @@ elif int(infips) != 0:
     else:
         with open(data[1]+'_covid.csv', 'w', newline='') as csvfile:
             spamwriter = csv.writer(csvfile)
-            spamwriter.writerow([data[1],'',''])
+            spamwriter.writerow([data[1],'',infips])
             spamwriter.writerow(['Date', 'Cases', 'Daily'])
             pretotal = 0
             for row in mycursor.execute('SELECT sfips, casedate, sum(cases) FROM covid_data, state_counties WHERE sfips=? \
@@ -46,7 +46,7 @@ elif int(infips) != 0:
 else:
     with open('USA_covid.csv', 'w', newline='') as csvfile:
         spamwriter = csv.writer(csvfile)
-        spamwriter.writerow(['USA','',''])
+        spamwriter.writerow(['USA','',infips])
         spamwriter.writerow(['Date', 'Cases', 'Daily'])
         pretotal = 0
         for data in mycursor.execute('SELECT casedate, sum(cases) FROM covid_data GROUP BY casedate ORDER BY casedate'):
