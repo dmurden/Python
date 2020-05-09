@@ -37,7 +37,8 @@ else:
                 daily[y-4] += int(x[y])
 dataout = [0]
 for y in range(1,len(daily)):
-    dataout.append(daily[y] - daily[y-1])
+    if daily[y] != 0:
+        dataout.append(daily[y] - daily[y-1])
 avgout = [0,0,0,0,0,0]
 i = 6
 while i < len(dataout):
