@@ -8,6 +8,7 @@ with open('covid_confirmed_usafacts.csv', newline='') as f:
 
 infips = input('Enter FIPS or 0 for USA:')
 
+daysavg = 7
 daily = []
 
 if int(infips) > 999:
@@ -39,10 +40,12 @@ dataout = [0]
 for y in range(1,len(daily)):
     if daily[y] != 0:
         dataout.append(daily[y] - daily[y-1])
-avgout = [0,0,0,0,0,0]
-i = 6
+avgout = []        
+for i in range(daysavg-1):
+    avgout.append(0)
+i = daysavg - 1
 while i < len(dataout):
-    avgout.append(mean(dataout[i-6:i]))
+    avgout.append(mean(dataout[i-(daysavg-1):i]))
     i += 1
 pyplot.plot(range(len(dataout)), dataout, 'b-', range(len(avgout)), avgout, 'r-')
 pyplot.show()
