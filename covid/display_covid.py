@@ -48,4 +48,5 @@ while i < len(dataout):
     avgout.append(mean(dataout[i-(daysavg-1):i]))
     i += 1
 pyplot.plot(range(len(dataout)), dataout, 'b-', range(len(avgout)), avgout, 'r-')
+pyplot.grid(True)
 pyplot.show()
