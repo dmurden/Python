@@ -1,6 +1,13 @@
 import csv
 from matplotlib import pyplot
 from statistics import mean
+import numpy as np
+
+def best_fit_slope_and_intercept(xs,ys):
+    m = (((mean(xs)*mean(ys)) - mean(xs*ys)) /
+         ((mean(xs)*mean(xs)) - mean(xs*xs)))
+    b = mean(ys) - m*mean(xs)
+    return m, b
 
 def dsp_graph(infips):
     daysavg = 7
@@ -32,10 +39,18 @@ def dsp_graph(infips):
             else:
                 for y in range(4,len(x)):
                     daily[y-4] += int(x[y])
-    dataout = [0]
+    dataout = []
     for y in range(1,len(daily)):
         if daily[y] != 0:
             dataout.append(daily[y] - daily[y-1])
+    ys = np.array(dataout, dtype=np.float64)
+    xs = np.array(list(range(0, len(dataout))), dtype=np.float64)
+    m, b = best_fit_slope_and_intercept(xs,ys)
+    #print(m,b)
+    regression_line = []
+    for x in xs:
+        regression_line.append((m*x)+b)
+
     avgout = []        
     for i in range(daysavg-1):
         avgout.append(0)
@@ -43,7 +58,11 @@ def dsp_graph(infips):
     while i < len(dataout):
         avgout.append(mean(dataout[i-(daysavg-1):i]))
         i += 1
-    pyplot.plot(range(len(dataout)), dataout, 'b-', range(len(avgout)), avgout, 'r-')
+
+    pyplot.plot(range(len(dataout)), dataout, 'b-', \
+        range(len(avgout)), avgout, 'r-', \
+        range(len(regression_line)), regression_line, 'y-')
+
     pyplot.grid(True)
     #pyplot.show()
 
