@@ -62,6 +62,7 @@ def dsp_graph(infips):
     pyplot.plot(range(len(dataout)), dataout, 'b-', \
         range(len(avgout)), avgout, 'r-', \
         range(len(regression_line)), regression_line, 'y-')
+    pyplot.text(60, .025, r'Slope: =' + str(m))
 
     pyplot.grid(True)
     #pyplot.show()
@@ -81,14 +82,16 @@ dsp_graph("18043")
 dsp_graph("18061")
 dsp_graph("21")
 dsp_graph("21111")
-dsp_graph("28")
-dsp_graph("28143")
+#dsp_graph("28")
+#dsp_graph("28143")
 dsp_graph("29")
+dsp_graph("29031")
 dsp_graph("29183")
 dsp_graph("29189")
 dsp_graph("29510")
 dsp_graph("47")
-dsp_graph("47157")
+dsp_graph("47155")
+#dsp_graph("47157")
 dsp_graph("0")
 
 pyplot.show()
