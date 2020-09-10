@@ -10,7 +10,7 @@ def best_fit_slope_and_intercept(xs,ys):
     return m, b
 
 def dsp_graph(infips):
-    daysavg = 7
+    daysavg = 14
     daily = []
     #pyplot.figure(figsize=[9.6,7.2])
     pyplot.figure(figsize=[13.8,7.2])
