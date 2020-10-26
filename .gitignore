@@ -1,2 +1,6 @@
 covid/covid_confirmed_usafacts.csv
-covid/covid.accdb
+covid/old/*
+covid/Lib/*
+covid/Scripts/*
+covid/Include/*
+covid/pyvenv.cfg
